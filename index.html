@@ -34,7 +34,7 @@
 
     <!--BODY-->
     <section class="flex justify-center items-center text-white">
-        <div class="w-[40vw] border-[0.5px] h-[85vh] rounded-lg backdrop-blur-sm bg-white/5">
+        <div class="w-[35vw] border-[0.5px] h-[85vh] rounded-lg backdrop-blur-sm bg-white/5">
             <div class="text-white flex items-center gap-2 py-3 px-5">
                 <i class="fa-solid fa-list-check text-2xl"></i>
                 <p class="text-2xl">Tasks</p>
@@ -43,10 +43,31 @@
             <div class="flex justify-center mt-10">
                 <div>
                     <input id="todoInput" type="text" placeholder="Enter Your Tasks Here...." class="border-[0.5px] rounded-md  mr-4 border-1 text-xl px-4 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4">
-                    <button class="border-[1.7px] mr-4 border-1 text-xl rounded-lg px-3 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4"><i class="fa-solid fa-plus"></i></button>
+                    <button onclick="addTodo()" class="border-[1.7px] mr-4 border-1 text-xl rounded-lg px-3 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4"><i class="fa-solid fa-plus"></i></button>
+                    <div id="inpHolder" class=" text-xl flex flex-col items-start gap-2 pt-10 pl-10">
+                        <!--TASK-->
+                        
+
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function addTodo(){
+            const todo = document.getElementById("todoInput");
+            if(todo.value === ''){
+                alert("Write some task!")
+            }
+            else{
+                const todoElement = document.createElement("div");
+                todoElement.innerHTML = todo.value;
+                const parrentEl = document.getElementById("inpHolder");
+                parrentEl.appendChild(todoElement);
+                todo.value = "";
+            }
+        }
+    </script>
 </body>
 </html>
