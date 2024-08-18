@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
 </head>
 
 <style>
-    body{
+    body {
         background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
     }
 </style>
@@ -42,25 +43,30 @@
 
             <div class="flex justify-center mt-10">
                 <div>
-                    <input id="todoInput" type="text" placeholder="Enter Your Tasks Here...." class="border-[0.5px] rounded-md  mr-4 border-1 text-xl px-4 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4">
-                    <button onclick="addTodo()" class="border-[1.7px] mr-4 border-1 text-xl rounded-lg px-3 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4"><i class="fa-solid fa-plus"></i></button>
-                    <div id="inpHolder" class=" text-xl flex flex-col items-start gap-2 pt-10 pl-10">
+                    <input id="todoInput" type="text" placeholder="Enter Your Tasks Here...."
+                        class="border-[0.5px] rounded-md  mr-4 border-1 text-xl px-4 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4">
+                    <button onclick="addTodo()"
+                        class="border-[1.7px] mr-4 border-1 text-xl rounded-lg px-3 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4"><i
+                            class="fa-solid fa-plus"></i></button>
+                    <ol class=" text-xl flex gap-2 pt-10 pl-10 items-center">
                         <!--TASK-->
-                        
+                        <li id="inpHolder"></li>
+                        <button class="edit-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center"><i class="fa-regular fa-pen-to-square text-gray-300 hover:text-white"></i></button>
+                        <button onclick="deleteTodo()" class="delete-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center"><i class="fa-solid fa-trash text-gray-300 hover:text-white"></i></button>
 
-                    </div>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        function addTodo(){
+        function addTodo() {
             const todo = document.getElementById("todoInput");
-            if(todo.value === ''){
+            if (todo.value === '') {
                 alert("Write some task!")
             }
-            else{
+            else {
                 const todoElement = document.createElement("div");
                 todoElement.innerHTML = todo.value;
                 const parrentEl = document.getElementById("inpHolder");
@@ -68,6 +74,12 @@
                 todo.value = "";
             }
         }
+
+        function deleteTodo(){
+            const element = document.getElementById("inpHolder");
+            element.parentNode.removeChild(element);
+        }
     </script>
 </body>
+
 </html>
