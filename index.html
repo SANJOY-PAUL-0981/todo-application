@@ -23,6 +23,14 @@
     body {
         background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
     }
+
+    #container div {
+        display: flex;
+        font-size: x-large;
+        align-items: center;
+        padding-left: 25px;
+        gap: 20px;
+    }
 </style>
 
 <body>
@@ -66,8 +74,8 @@
             textNode.setAttribute("id", ctr);
             seq = seq + 1;
             textNode.innerHTML =
-                "<div>" + seq+". " + inputEl.value + "</div>" +
-                "<button class='edit-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center'><i class='fa-regular fa-pen-to-square text-gray-300 hover:text-white'></i></button>" +
+                "<div>" + seq + ". " + inputEl.value + "</div>" +
+                "<button onclick='editTodo(" + ctr + ")' class='edit-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center'><i class='fa-regular fa-pen-to-square text-gray-300 hover:text-white'></i></button>" +
                 "<button onclick='deleteTodo(" + ctr + ")' class='delete-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center'><i class='fa-solid fa-trash text-gray-300 hover:text-white'></i></button>";
             // inner HTML of textNode will contain the value of inputEl
             const parrentEl = document.getElementById("container"); // selecting the parrent eliment by id, where the new div will be created and store the location into parrentEl
@@ -80,6 +88,7 @@
             const element = document.getElementById(index);
             element.parentNode.removeChild(element)
         }
+
     </script>
 </body>
 
