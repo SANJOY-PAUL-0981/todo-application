@@ -35,49 +35,50 @@
 
     <!--BODY-->
     <section class="flex justify-center items-center text-white">
-        <div class="w-[35vw] border-[0.5px] h-[85vh] rounded-lg backdrop-blur-sm bg-white/5">
-            <div class="text-white flex items-center gap-2 py-3 px-5">
+        <div class="w-[35vw] border-[0.5px] h-[85vh] rounded-lg backdrop-blur-sm bg-white/5 px-7">
+            <div class="text-white flex items-center gap-2 py-5  border-b-[1px]">
                 <i class="fa-solid fa-list-check text-2xl"></i>
                 <p class="text-2xl">Tasks</p>
             </div>
 
-            <div class="flex justify-center mt-10">
-                <div>
-                    <input id="todoInput" type="text" placeholder="Enter Your Tasks Here...."
-                        class="border-[0.5px] rounded-md  mr-4 border-1 text-xl px-4 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4">
-                    <button onclick="addTodo()"
-                        class="border-[1.7px] mr-4 border-1 text-xl rounded-lg px-3 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4"><i
-                            class="fa-solid fa-plus"></i></button>
-                    <ol class=" text-xl flex gap-2 pt-10 pl-10 items-center">
-                        <!--TASK-->
-                        <li id="inpHolder"></li>
-                        <button class="edit-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center"><i class="fa-regular fa-pen-to-square text-gray-300 hover:text-white"></i></button>
-                        <button onclick="deleteTodo()" class="delete-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center"><i class="fa-solid fa-trash text-gray-300 hover:text-white"></i></button>
-
-                    </ol>
-                </div>
+            <div class="flex justify-center mt-10 mb-14">
+                <input type="text" placeholder="Enter Your Tasks Here...."
+                    class="border-[0.5px] rounded-md  mr-4 border-1 text-xl px-4 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4">
+                <button onclick="addTodo()"
+                    class="border-[1.7px] mr-4 border-1 text-xl rounded-lg px-3 py-1 text-center text-gray-200 no-underline align-middle transition-all duration-300 ease-in-out bg-transparent border-gray-600 border-solid cursor-pointer select-none hover:text-white hover:border-white focus:shadow-xs focus:no-underline max-sm:py-1 max-sm:px-4"><i
+                        class="fa-solid fa-plus"></i></button>
             </div>
+
+            <div id="container">
+                <!--TASKS-->
+
+
+            </div>
+
         </div>
     </section>
-
     <script>
+        let ctr = 1;
+        let seq = 0;
         function addTodo() {
-            const todo = document.getElementById("todoInput");
-            if (todo.value === '') {
-                alert("Write some task!")
-            }
-            else {
-                const todoElement = document.createElement("div");
-                todoElement.innerHTML = todo.value;
-                const parrentEl = document.getElementById("inpHolder");
-                parrentEl.appendChild(todoElement);
-                todo.value = "";
-            }
+            const inputEl = document.querySelector("input"); // inpuit tag is stored inside inpulEl var
+            const textNode = document.createElement("div"); // new div created which is stored inside textNode var
+            textNode.setAttribute("id", ctr);
+            seq = seq + 1;
+            textNode.innerHTML =
+                "<div>" + seq+". " + inputEl.value + "</div>" +
+                "<button class='edit-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center'><i class='fa-regular fa-pen-to-square text-gray-300 hover:text-white'></i></button>" +
+                "<button onclick='deleteTodo(" + ctr + ")' class='delete-btn border-2 text-base border-gray-400 hover:border-white rounded-lg px-2 py-2 flex justify-center items-center'><i class='fa-solid fa-trash text-gray-300 hover:text-white'></i></button>";
+            // inner HTML of textNode will contain the value of inputEl
+            const parrentEl = document.getElementById("container"); // selecting the parrent eliment by id, where the new div will be created and store the location into parrentEl
+            parrentEl.appendChild(textNode); // creating the new child inside parrentEl which have the value of textNode == value of inputEl
+            inputEl.value = " "; // reset the input box
+            ctr = ctr + 1;
         }
 
-        function deleteTodo(){
-            const element = document.getElementById("inpHolder");
-            element.parentNode.removeChild(element);
+        function deleteTodo(index) {
+            const element = document.getElementById(index);
+            element.parentNode.removeChild(element)
         }
     </script>
 </body>
